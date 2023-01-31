@@ -58,8 +58,12 @@ ul {
     padding-left: 0;
 }
 
-img{
+img {
     display: block;
+}
+
+.link {
+    color: var(--tagline-text-color);
 }
 
 .container {
@@ -138,12 +142,8 @@ img{
     color: var(--tagline-text-color);
 }
 
-.link.current {
+.link .current {
     color: var(--accent-color);
-}
-
-.link {
-    color: var(--tagline-text-color);
 }
 
 /* —————————————— CONTACTS —————————————— */
@@ -168,11 +168,11 @@ img{
 /* —————————————— HERO —————————————— */
 
 .hero {
-    background-color: var(--primary-text-color);
     height: 600px;
     max-width: 1440px;
     padding-top: 188px;
     padding-bottom: 188px;
+    background-color: var(--primary-text-color);
     background-image: var(--gra), url(../images/hero-bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -241,11 +241,11 @@ img{
     gap: 24px;
 }
 
-.advantages-wrap {
+.advantages-item {
     max-width: 264px;
 }
 
-.advantages-wrap::before {
+.advantages-item::before {
     display: block;
     content: "";
     height: 112px;
