@@ -26,6 +26,7 @@
     --soc-bg-color: rgba(255, 255, 255, 0.1);
     --soc-bg-hover: #31D0AA;
     --modal-color: #FCFCFC;
+    --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
 } 
 /* —————————————— FOR ALL —————————————— */
 
@@ -89,7 +90,7 @@ img {
 
 .header {
     padding-top: 24px;
-    padding-bottom: 24px;
+    padding-bottom: 28px;
     border: 0.5px solid #F4F4FD;
     box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08), 
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
@@ -136,6 +137,10 @@ img {
     display: flex;
     align-items: center;
     margin-right: auto;
+
+    transition-property: color;
+    transition-duration: 250ms;
+    transition-timing-function: var(--transition-timing);
 }
 
 .site-nav .link:hover,
@@ -143,8 +148,23 @@ img {
     color: var(--tagline-text-color);
 }
 
-.link .current {
+.link.current {
+    position: relative;
     color: var(--accent-color);
+}
+
+.link.current::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 47px;
+
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
 }
 
 /* —————————————— CONTACTS —————————————— */
@@ -169,39 +189,43 @@ img {
 /* —————————————— HERO —————————————— */
 
 .hero {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: auto;
     height: 600px;
     max-width: 1440px;
     padding-top: 188px;
     padding-bottom: 188px;
     background-color: var(--primary-text-color);
     background-image: var(--gra), url(../images/hero-bg.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    margin: auto;
 }
 
 .hero-title {
+    margin: auto;
+    margin-bottom: 48px;
+    text-align: center;
     max-width: 500px;
     height: 120px;
     font-size: 56px;
     line-height: 1.07;
     letter-spacing: 0.02em;
     color: var(--primary-white-color);
-    margin: auto;
-    margin-bottom: 48px;
-    text-align: center;
 }
 
 .hero-button {
+    display: block;
+    margin: auto;
     min-width: 169px;
     height: 56px;
     background-color: var(--accent-color);
     color: var(--primary-white-color);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     border: transparent;
-    display: block;
-    margin: auto;
+
+    transition-property: background-color, box-shadow;
+    transition-duration: 250ms;
+    transition-timing-function: var(--transition-timing);
 }
 
 .hero-button:hover,
@@ -334,7 +358,7 @@ img {
     background-color: #fff;
     border-radius: 0px 0px 4px 4px;
     box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 
-    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
 }
 
 .team-list {
@@ -362,6 +386,10 @@ img {
     align-content: center;
     justify-content: center;
     border-radius: 50%;
+
+    transition-property: background-color;
+    transition-duration: 250ms;
+    transition-timing-function: var(--transition-timing);
 }
 
 .team-soc-link:is(:hover, :focus) {
@@ -402,6 +430,10 @@ img {
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
+
+    transition-property: border-color, fill;
+    transition-duration: 250ms;
+    transition-timing-function: var(--transition-timing);
 }
 
 .customers-icon {
@@ -484,6 +516,10 @@ img {
     align-content: center;
     justify-content: center;
     border-radius: 50%;
+
+    transition-property: background-color;
+    transition-duration: 250ms;
+    transition-timing-function: var(--transition-timing);
 }
 
 .soc-link:is(:hover, :focus) {
@@ -501,9 +537,8 @@ img {
     background-color: rgba(46, 47, 66, 0.7);
 }
 
-.backdrop.is-hiiden {
+.backdrop.is-hidden {
     opacity: 0;
-
     pointer-events: none;
 }
 
@@ -517,10 +552,28 @@ img {
 
     background-color: var(--modal-color);
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14),
-    0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
+0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
 }
 
+.modal-button {
+    width: 24px;
+    height: 24px;
+
+    margin: 24px 24px 24px 360px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    background-color: var(--footer-text-color);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-image: url(../images/close-black-18dp.svg);
+}
+
+.modal-button:is(:hover, :focus) {
+    border: transparent;
+    box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 
+0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
 
 /* —————————————— PORTFOLIO —————————————— */
 
@@ -529,6 +582,10 @@ img {
     color: var(--accent-color);
     background: var(--team-section-color);
     border: 1px solid var(--footer-text-color);
+
+    transition-property: background-color, color, box-shadow, border;
+    transition-duration: 250ms;
+    transition-timing-function: var(--transition-timing);
 }
 
 .filter-list {
@@ -575,6 +632,10 @@ img {
 
 .examples-item {
     box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08);
+
+    transition-property: box-shadow;
+    transition-duration: 250ms;
+    transition-timing-function: var(--transition-timing);
 } 
 
 .examples-item:hover {
