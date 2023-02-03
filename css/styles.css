@@ -138,9 +138,7 @@ img {
     align-items: center;
     margin-right: auto;
 
-    transition-property: color;
-    transition-duration: 250ms;
-    transition-timing-function: var(--transition-timing);
+    transition: color 250ms var(--transition-timing);
 }
 
 .site-nav .link:hover,
@@ -223,9 +221,7 @@ img {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     border: transparent;
 
-    transition-property: background-color, box-shadow;
-    transition-duration: 250ms;
-    transition-timing-function: var(--transition-timing);
+    transition: background-color 250ms var(--transition-timing), box-shadow 250ms var(--transition-timing);;
 }
 
 .hero-button:hover,
@@ -387,9 +383,7 @@ img {
     justify-content: center;
     border-radius: 50%;
 
-    transition-property: background-color;
-    transition-duration: 250ms;
-    transition-timing-function: var(--transition-timing);
+    transition: background-color 250ms var(--transition-timing);
 }
 
 .team-soc-link:is(:hover, :focus) {
@@ -431,9 +425,7 @@ img {
     align-content: center;
     justify-content: center;
 
-    transition-property: border-color, fill;
-    transition-duration: 250ms;
-    transition-timing-function: var(--transition-timing);
+    transition: border-color 250ms var(--transition-timing), fill 250ms var(--transition-timing);
 }
 
 .customers-icon {
@@ -517,9 +509,7 @@ img {
     justify-content: center;
     border-radius: 50%;
 
-    transition-property: background-color;
-    transition-duration: 250ms;
-    transition-timing-function: var(--transition-timing);
+    transition: background-color 250ms var(--transition-timing);
 }
 
 .soc-link:is(:hover, :focus) {
@@ -535,6 +525,9 @@ img {
     width: 100%;
     height: 100%;
     background-color: rgba(46, 47, 66, 0.7);
+
+    opacity: 1;
+    transition: opacity 250ms var(--transition-timing);
 }
 
 .backdrop.is-hidden {
@@ -542,11 +535,14 @@ img {
     pointer-events: none;
 }
 
+.backdrop.is-hidden .modal {
+    transform: scale(0.9) translate(-50%, -50%);
+}
+
 .modal {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50% );
     min-width: 408px;
     min-height: 576px;
 
@@ -554,6 +550,9 @@ img {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14),
 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
+
+    transform: scale(1) translate(-50%, -50%);
+    transition: transform 250ms var(--transition-timing);
 }
 
 .modal-button {
@@ -567,12 +566,19 @@ img {
     background-color: var(--footer-text-color);
     border: 1px solid rgba(0, 0, 0, 0.1);
     background-image: url(../images/close-black-18dp.svg);
+    transition: border 250ms var(--transition-timing), box-shadow 250ms var(--transition-timing);
 }
 
-.modal-button:is(:hover, :focus) {
+/* .modal-button:is(:hover, :focus) {
     border: transparent;
     box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 
-0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+} */
+
+.modal-button:active {
+    border: transparent;
+    box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
 }
 
 /* —————————————— PORTFOLIO —————————————— */
@@ -586,6 +592,8 @@ img {
     transition-property: background-color, color, box-shadow, border;
     transition-duration: 250ms;
     transition-timing-function: var(--transition-timing);
+    transition: background-color 250ms var(--transition-timing), color 250ms var(--transition-timing), 
+    box-shadow 250ms var(--transition-timing), border 250ms var(--transition-timing);
 }
 
 .filter-list {
@@ -633,9 +641,10 @@ img {
 .examples-item {
     box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08);
 
-    transition-property: box-shadow;
+    /* transition-property: box-shadow;
     transition-duration: 250ms;
-    transition-timing-function: var(--transition-timing);
+    transition-timing-function: var(--transition-timing); */
+    transition: box-shadow 250ms var(--transition-timing);
 } 
 
 .examples-item:hover {
@@ -648,4 +657,35 @@ img {
     padding: 32px 0 32px 16px;
     border: 0.5px solid #F4F4FD;
     flex-basis: calc((100% - 2*24px)/3);
+}
+
+.product-thumb {
+    position: relative;
+    overflow: hidden;
+}
+
+.examples-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--accent-color);
+
+    /* opacity: 0; */
+    transform: translateY(100%);
+    transition: transform 250ms var(--transition-timing);
+}
+
+.examples-item:hover .examples-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.overlay-tagline {
+    padding: 40px 32px 164px 32px;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    color: var(--primary-white-color);
 }
